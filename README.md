@@ -20,7 +20,13 @@ for example, in my Ubuntu environment, the absolute path is as follows:
 
 ![nano src/CMakeLists.txt](/images/image.png)
 
-3. The code has 2 implementations of separation algorithms to separate rounded capacity inequalities: User and CVRPSEP. To use the User defined algorithms use:
+3. The compiler also needs an absolute path to the CVRPSEP package. To provide the path, go into src/CMakeLists.txt and edit the following line:
+
+```cmake
+set(CPLEX_DIR "/some/path/to/Cvrpsep")
+```
+
+4. The code has 2 implementations of separation algorithms to separate rounded capacity inequalities: User and CVRPSEP. To use the User defined algorithms use:
 
 ```bash
 ./cmake_script_exact.sh
