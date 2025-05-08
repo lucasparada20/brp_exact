@@ -26,13 +26,13 @@ for example, in my Ubuntu environment, the absolute path is as follows:
 set(CVRPSEP_SRC_DIR "/some/path/to/Cvrpsep")
 ```
 
-4. The code has 2 implementations of separation algorithms to separate rounded capacity inequalities: User and CVRPSEP. To use the User defined algorithms use:
+4. The code has two implementations of separation algorithms to separate rounded capacity inequalities: User and CVRPSEP. To build using the User defined algorithms use the following command:
 
 ```bash
 ./cmake_script_exact.sh
 ```
 
-To use CVRPSEP:
+To build using the CVRPSEP algorithms use the following command:
 
 ```bash
 ./cmake_script_exact.sh release cvrpsep
