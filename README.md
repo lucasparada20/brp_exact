@@ -18,7 +18,7 @@ set(CPLEX_DIR "/some/path/to/Cplex")
 
 for example, in my Ubuntu environment, the absolute path is as follows:
 
-![nano src/CMakeLists.txt](/images/image.png)](https://github.com/lucasparada20/sbrp_exact/blob/main/images/image.png)
+![nano src/CMakeLists.txt](https://github.com/lucasparada20/sbrp_exact/blob/main/images/image.png)
 
 3. The compiler also needs an absolute path to the CVRPSEP package. To provide the path, go into src/CMakeLists.txt and edit the following line:
 
