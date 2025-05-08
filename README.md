@@ -7,7 +7,7 @@ An exact algorithm for the bicycle repositioning problem
 
 ```shell
 git clone https://github.com/lucasparada20/brp_exact.git
-cd sbrp
+cd brp
 chmod u+x cmake_script_exact.sh
 ```
 2. The compiler needs an absolute path to your installed Cplex library. To provide the path, go into src/CMakeLists.txt and edit the following line:
