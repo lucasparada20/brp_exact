@@ -6,7 +6,7 @@ An exact algorithm for the bicycle repositioning problem
 1. Clone the repository and add executable permission to a script that will call CMake for you:
 
 ```shell
-git clone https://github.com/lucasparada20/sbrp_exact.git
+git clone https://github.com/lucasparada20/brp_exact.git
 cd sbrp
 chmod u+x cmake_script_exact.sh
 ```
