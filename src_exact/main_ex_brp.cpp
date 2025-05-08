@@ -54,7 +54,7 @@ int main(int arg, char ** argv)
 	printf("Recourse LB with min drivers:%.2lf MinDriverCount1:%d MinDriverCount2:%d\n", lb_recourse, min_drv_cnt1,min_drv_cnt2);		
 
 	//------- ALNS ----------//
-	/*if(Parameters::GetInstanceType() == 1) // no recourse in dhin instances ...
+	if(Parameters::GetInstanceType() == 1) // no recourse in dhin instances ...
 	{
 		RemoveRandomBRP random_remove;
 		RelatednessRemoveBRP related_remove(pr.GetDistances());
@@ -96,7 +96,7 @@ int main(int arg, char ** argv)
 		re_file_name_heur << std::string(Parameters::GetCityName()) << "," << pr.GetCustomerCount() << "," << pr.GetDriver(0)->capacity << "," << heur_ub << "," << heur_nb_drivers << "," << std::fixed << std::setprecision(2) << elapsed_seconds << "\n";
 		printf("Re file written to:%s\n",re_file_name_heur_str.c_str());
 		re_file_name_heur.close();		
-	}*/
+	}
 	
 	ExactBrpO ex;
 	if(Parameters::GetInstanceType() == 1)
