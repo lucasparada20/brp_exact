@@ -40,3 +40,5 @@ To use CVRPSEP:
 
 For details of CVRPSEP, refer to the [original paper](https://link.springer.com/article/10.1007/s10107-003-0481-8) from Lysgaard et al., 2003
 
+## Instances
+
