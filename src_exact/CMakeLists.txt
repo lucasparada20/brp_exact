@@ -42,7 +42,7 @@ foreach(dir IN LISTS CPLEX_INCLUDE_DIRS CPLEX_LIBRARY_DIRS)
 endforeach()
 
 # CVRPSEP sources
-set(CVRPSEP_SRC_DIR "/some/path/to/src_cvrpsep")
+set(CVRPSEP_SRC_DIR "/some/path/to/Cvrpsep")
 # The line below is equivalent to set(Sources ... all .cpp files ...)
 file(GLOB CVRPSEP_SOURCES "${CVRPSEP_SRC_DIR}/*.cpp")
 include_directories(${CVRPSEP_SRC_DIR})
