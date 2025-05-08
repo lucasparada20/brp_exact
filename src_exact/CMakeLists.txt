@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Hard code the path to the CPLEX directory
-set(CPLEX_DIR "/home/lucasparada20/CPLEX_Studio2211")
+set(CPLEX_DIR "/some/path/to/Cplex")
 message("Using CPLEX_DIR = ${CPLEX_DIR}")
 
 # Include directories for CPLEX
@@ -42,7 +42,7 @@ foreach(dir IN LISTS CPLEX_INCLUDE_DIRS CPLEX_LIBRARY_DIRS)
 endforeach()
 
 # CVRPSEP sources
-set(CVRPSEP_SRC_DIR "/home/lucasparada20/work/brp/src_cvrpsep")
+set(CVRPSEP_SRC_DIR "/some/path/to/src_cvrpsep")
 # The line below is equivalent to set(Sources ... all .cpp files ...)
 file(GLOB CVRPSEP_SOURCES "${CVRPSEP_SRC_DIR}/*.cpp")
 include_directories(${CVRPSEP_SRC_DIR})
