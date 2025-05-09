@@ -1,5 +1,5 @@
 # brp_exact
-An exact algorithm for the bicycle repositioning problem
+An exact branch-and-cut algorithm for the bicycle repositioning problem. The algorithm solves a Cvrp-like problem using Cplex with UserCut and Lazy callbacks. The callbacks dynamically separate rounded capacity inequalities, infeasible paths, sets, and optimality cuts. Additionally, two implementations are presented as separation algorithms, using the so-called CVRPSEP package and user-defined routines.
 
 ## Building the code in Linux
 
@@ -41,4 +41,6 @@ To build using the CVRPSEP algorithms use the following command:
 For details of CVRPSEP, refer to the [original paper](https://link.springer.com/article/10.1007/s10107-003-0481-8) from Lysgaard et al., 2003
 
 ## Instances
+
+The code can solve two benchmark set. The first one is the set of instances from this [article](https://www.sciencedirect.com/science/article/pii/S0305048313001187)
 
