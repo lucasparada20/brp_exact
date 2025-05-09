@@ -42,5 +42,36 @@ For details of CVRPSEP, refer to the [original paper](https://link.springer.com/
 
 ## Instances
 
-The code can solve two benchmark set. The first one is the set of instances from this [article](https://www.sciencedirect.com/science/article/pii/S0305048313001187)
+The code can solve two benchmark sets. 
 
+### DHIN instances
+
+This is the set of instances from this [article](https://www.sciencedirect.com/science/article/pii/S0305048313001187) with relatively small sizes in terms of stations: up to 120 stations
+
+### SLR instances
+
+This is a real-life-sized set built from bike-sharing data in 2023 (details can be found in this [technical report](https://www.cirrelt.ca/documentstravail/cirrelt-2025-02.pdf)). The sizes range from the city of Boston, with 424 stations, to New York, with 2000 stations. An instance in this set has a set of targets and a station status JSON file, both provided in their respective directory. The station status file can be updated anytime; the code will parse the number of stations. To update the station status file, follow these steps
+
+### Updating a station status file
+
+1. Look for the JSON endpoint of the system you want to update data for. The endpoints are provided in this [repo](https://github.com/MobilityData/gbfs/blob/master/systems.csv). 
+
+2. Hit the following curl command:
+
+```bash
+curl -s $URL1 -o $FILE1
+```
+
+URL1 is the endpoint of the bike-sharing system, and FILE1 is the newly created file with your updated data. For example, for Montreal's Bixi, the following will create a new file with the real and current station status:
+
+```bash
+curl -s https://gbfs.velobixi.com/gbfs/en/station_status.json -o montreal_station_status.json
+```
+
+3. Replace the old status file in the directory of this repo with the newly created one and call the previously built executable as follows:
+
+```bash
+build/exec_exact instance_type=slr instance_file=instances_slr/montreal801.txt targets_file_name=instances_slr/targets/targets_montreal.txt initial_capacities_file_name=instances_slr/status/montreal_station_status.json delta=1
+```
+
+I will later create a repo with fun commands and data science techniques for analyzing and scrubbing bike sharing system data. But for now, the ```jq''' command can tell you the number of stations in your new Bixi file, inspecting any given station (say station 20) and counting the current number of regular and e-bikes in the system:
