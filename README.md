@@ -76,6 +76,8 @@ build/exec_exact instance_type=slr instance_file=instances_slr/montreal801.txt t
 
 I will later create a repo with fun commands and data science techniques for analyzing and scrubbing bike sharing system data. But for now, the `jq` command can tell you the timestamp of the update, the number of stations in your new Bixi file, inspect any given station (say station 20), and count the current number of regular and e-bikes in the system:
 
+![Bixi data](https://github.com/lucasparada20/brp_exact/blob/main/images/Bixi%20data.jpg)
+
 **Timestamp**
 ```bash
 date -d @"$(jq '.last_updated' montreal_station_status.json)"
@@ -99,6 +101,6 @@ jq '
   )' montreal_station_status.json
 '''
 
-![Bixi data](https://github.com/lucasparada20/brp_exact/blob/main/images/Bixi%20data.jpg)
+
 
 
