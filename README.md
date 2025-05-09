@@ -98,6 +98,7 @@ jq '
     }
   )' montreal_station_status.json
 '''
-[Bixi data](https://github.com/lucasparada20/brp_exact/blob/main/images/Bixi%20data.jpg)
+
+![Bixi data](https://github.com/lucasparada20/brp_exact/blob/main/images/Bixi%20data.jpg)
 
 
