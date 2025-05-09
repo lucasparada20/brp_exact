@@ -74,4 +74,28 @@ curl -s https://gbfs.velobixi.com/gbfs/en/station_status.json -o montreal_statio
 build/exec_exact instance_type=slr instance_file=instances_slr/montreal801.txt targets_file_name=instances_slr/targets/targets_montreal.txt initial_capacities_file_name=instances_slr/status/montreal_station_status.json delta=1
 ```
 
-I will later create a repo with fun commands and data science techniques for analyzing and scrubbing bike sharing system data. But for now, the ```jq''' command can tell you the number of stations in your new Bixi file, inspecting any given station (say station 20) and counting the current number of regular and e-bikes in the system:
+I will later create a repo with fun commands and data science techniques for analyzing and scrubbing bike sharing system data. But for now, the `jq` command can tell you the timestamp of the update, the number of stations in your new Bixi file, inspect any given station (say station 20), and count the current number of regular and e-bikes in the system:
+
+**Timestamp**
+```bash
+date -d @"$(jq '.last_updated' montreal_station_status.json)"
+```
+**Number of stations**
+```bash
+jq '.data.stations | length' montreal_station_status.json
+```
+**Inspect station 20**
+```bash
+jq '.data.stations[20]' montreal_station_status.json
+```
+**Count the number of regular and e-bikes**
+```bash
+jq '
+  reduce .data.stations[] as $station ({"ebikes": 0, "bikes": 0};
+    {
+      "ebikes": (.ebikes + ($station.num_ebikes_available // 0)),
+      "bikes": (.bikes + ($station.num_bikes_available // 0))
+    }
+  )' montreal_station_status.json
+'''
+
