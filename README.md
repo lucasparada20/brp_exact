@@ -46,7 +46,12 @@ The code can solve two benchmark sets.
 
 ### DHIN instances
 
-This is the set of instances from this [article](https://www.sciencedirect.com/science/article/pii/S0305048313001187) with relatively small sizes in terms of stations: up to 120 stations
+This is the set of instances from this [article](https://www.sciencedirect.com/science/article/pii/S0305048313001187) with relatively small sizes in terms of stations: up to 120 stations. To call the instances, use the following sample:
+
+```bash
+build/exec_exact instance_type=dhin instance_file=instances_dhin/Boston30.txt
+```
+Since these instances are relatively small, the code will deploy the ALNS metaheuristic to compute an upper bound and pass a warm start to the exact algorithm. Even for the largest of these instances, the whole ALNS run should not take more than 5 minutes. 
 
 ### SLR instances
 
