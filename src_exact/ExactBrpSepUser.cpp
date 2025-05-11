@@ -64,33 +64,69 @@ void ExactBrpSepUser::SeparateFrac(IloRangeArray array)
 		expr.end();
 	}		
 	
-	//Look for tours and see if they are infeasible
-	for(int i = 0; i < _graph->GetNodeCount(); i++)//stations + depot
+	//Searched for connected components to the depot
+	/*for(int i = 0; i < _graph->GetNodeCount(); i++)//stations + depot
 		_component[i] = -1;
 	ResearchDepotComponent(_graph->GetNode(0), 0);
-
-	std::vector<Node*> tour; tour.reserve( _graph->GetNodeCount() );
-	tour.insert(tour.begin(),_graph->GetNode(0)); //Inf set method needs depots...
 	
-	for(int i=1;i<_component.size();i++)
-		if(_component[i]==0)
-			tour.push_back(_graph->GetNode(i));
-	double sumv=0.0;
-	for(int m = 1; m < tour.size(); m++)
+	//printf("Components:");
+	//for(size_t i=0;i<_component.size();i++)
+	//	printf(" co%zu:%d",i,_component[i]);
+	//printf("\n");
+	
+	int cntr = 0;
+	double sumv = 0.0;
+
+	while (cntr < _component.size())
 	{
-		ExBrpArcO* arc = _graph->GetArc(tour[m-1]->no, tour[m]->no);
-		if (arc != NULL) sumv += arc->value;
-	}
-	int nb = tour.size() - 1;
-	tour.push_back(_graph->GetNode(0));
-	
-	if(tour.size()<=5) return; // All 2,3-size inf sets are added at the root as inf arcs.
-	//Additionally, all single routes are feasible.
-	//So an inf set needs to be at least: 0-i-j-k-l-0, size>=6
+		std::vector<Node*> tour;
+		tour.reserve(_graph->GetNodeCount());
+		tour.push_back(_graph->GetNode(0));
+		sumv = 0.0;
 
-	int nb_veh = RouteFeasibility::GetDriverCount(_prob, tour);
-	if( sumv > nb - 2 - nb_veh + 0.2 )
-		TestAndAddInfeasiblePath(tour,array);
+  		// Flag to detect whether we added anything
+		bool added = false;
+
+		// Build a tour while the component marker is 0
+		while (cntr < _component.size() && _component[cntr] == 0)
+		{
+			if (cntr + 1 < _graph->GetNodeCount())
+			{
+				ExBrpArcO* a = _graph->GetArc(tour.back()->no, _graph->GetNode(cntr + 1)->no);
+				if (a != NULL)
+					sumv += a->value;
+				tour.push_back(_graph->GetNode(cntr + 1));
+				added = true;
+			}
+			cntr++; // always increment to avoid infinite loop
+		}
+
+		// Skip the -1 that marks the end of the component (if present)
+		if (cntr < _component.size() && _component[cntr] == -1)
+			cntr++;
+
+		// If nothing was added, skip
+		if (!added)
+			continue;
+
+		// Complete the tour by returning to depot
+		ExBrpArcO* a = _graph->GetArc(tour.back()->no, _graph->GetNode(0)->no);
+		if (a != NULL)
+			sumv += a->value;
+
+		tour.push_back(_graph->GetNode(0));
+		if (tour.size() <= 5)
+			continue;
+		
+		if(sumv < (int)tour.size() - 2 - 1) 
+			continue;
+		
+		int nb_veh = RouteFeasibility::GetDriverCount(_prob, tour);
+		
+		//inq : sumv <= tour.size() - 2 - nb_veh
+		if (sumv > tour.size() - 2 - nb_veh + 0.2)
+			TestAndAddInfeasiblePath(tour, array);
+	}*/	
 }
 
 //Separates inequalities from integer solutions
