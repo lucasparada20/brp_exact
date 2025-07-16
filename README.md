@@ -79,7 +79,13 @@ curl -s https://gbfs.velobixi.com/gbfs/en/station_status.json -o montreal_statio
 build/exec_exact instance_type=slr instance_file=instances_slr/montreal801.txt targets_file_name=instances_slr/targets/targets_montreal.txt initial_capacities_file_name=instances_slr/status/montreal_station_status.json delta=1
 ```
 
-I will later create a repo with fun commands and data science techniques for analyzing and scrubbing bike sharing system data. But for now, the `jq` command can tell you the timestamp of the update, the number of stations in your new Bixi file, inspect any given station (say station 20), and count the current number of regular and e-bikes in the system:
+I will later create a repo with fun commands and data science techniques for analyzing and scrubbing bike sharing system data. But for now, the `jq` command can tell you the timestamp of the update, the number of stations in your new Bixi file, inspect any given station (say station 20), and count the current number of regular and e-bikes in the system.
+
+First, install `jq` using the following command:
+
+```bash
+sudo apt-get install jq && jq
+```
 
 **Timestamp**
 ```bash
