@@ -115,12 +115,12 @@ The station information file is another endpoint commonly used by BSS. It contai
 
 ```bash
 curl -s https://quebec.publicbikesystem.net/customer/gbfs/v2/en/station_information -o quebec_station_information.json
-'''
+```
 
 Then, using the `jq` command as before, one can query the file to store the coordinates of all the stations in the system:
 
 ```bash
 jq -r '.data.stations[] | "\(.lat),\(.lon)"' quebec_station_information.json > station_coords.txt
-'''
+```
 
 
