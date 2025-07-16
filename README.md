@@ -121,6 +121,7 @@ Then, using the `jq` command as before, one can query the file to store the coor
 
 ```bash
 jq -r '.data.stations[] | "\(.lat),\(.lon)"' quebec_station_information.json > station_coords.txt
+
 ```
 
 
