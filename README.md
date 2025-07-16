@@ -105,6 +105,22 @@ jq '
 ```
 ![Bixi data](https://github.com/lucasparada20/brp_exact/blob/main/images/Bixi%20data.jpg)
 
+### Updating a station information file
 
+The station information file is another endpoint commonly used by BSS. It contains snapshots of the stations locations and capacities in terms of docks, among other relevant data.
+
+1. Look for the JSON endpoint of the system you want to update data for. The endpoints are provided in this [repo](https://github.com/MobilityData/gbfs/blob/master/systems.csv). 
+
+2. Hit the same curl command as for the station status file. For example, for Québec's àVillo system:
+
+```bash
+curl -s https://quebec.publicbikesystem.net/customer/gbfs/v2/en/station_information -o quebec_station_information.json
+'''
+
+Then, using the `jq` command as before, one can query the file to store the coordinates of all the stations in the system:
+
+```bash
+jq -r '.data.stations[] | "\(.lat),\(.lon)"' quebec_station_information.json > station_coords.txt
+'''
 
 
